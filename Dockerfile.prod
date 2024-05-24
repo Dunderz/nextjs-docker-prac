@@ -1,26 +1,17 @@
-# Use the latest version of node as the base image
 FROM node:latest
 
-# Set /app as the working directory in the Docker image
 WORKDIR /app
 
-# Copy package.json and package-lock.json (if available) to the Docker image
-COPY package*.json ./
+COPY package*.json .
 
-# Copy the rest of the application to the Docker image
-COPY . .
-
-# Install the application's dependencies inside the Docker image
 RUN npm install
 
-# Build the application inside the Docker image
+COPY . .
+
 RUN npm run build
 
-# Set the environment variable PORT to 4000 inside the Docker image
 ENV PORT=4000
 
-# Inform Docker that the container will listen on the specified port at runtime
 EXPOSE 4000
 
-# Define the command to run the application
 CMD ["npm", "run", "start"]
