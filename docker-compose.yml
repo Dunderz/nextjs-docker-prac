@@ -4,18 +4,18 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - /app/.next
       - /app/node_modules
+      - /app/.next
       - .:/app
-    ports:
-      - "3000:3000"
     env_file:
       - .env.local
+    ports:
+      - "3000:3000"
   client-prod:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    ports:
-      - "4000:4000"
     env_file:
       - .env
+    ports:
+      - "4000:4000"
