@@ -3,19 +3,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
     volumes:
       - /app/node_modules
       - /app/.next
       - .:/app
     env_file:
       - .env.local
-    ports:
-      - "3000:3000"
   client-prod:
     build:
       context: .
       dockerfile: Dockerfile.prod
-    env_file:
-      - .env
     ports:
       - "4000:4000"
+    env_file:
+      - .env
